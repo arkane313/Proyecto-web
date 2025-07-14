@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catálogo de Productos</title>
+
+  <!-- Poppins + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f6f6f6;
+      color: #333;
+    }
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 700; font-size: 1.3rem; color: #8b6a42; }
+    nav a {
+      margin-left: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover { color: #8b6a42; }
+
+    .catalogo-container {
+      padding: 2rem;
+      text-align: center;
+    }
+    .catalogo-container h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .buscador {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .buscador input {
+      padding: .6rem 1rem  .6rem 2.5rem;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      width: 300px;
+      max-width: 90%;
+      font-size: 1rem;
+    }
+    .buscador .fas {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      color: #666;
+    }
+
+    .filtros {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .5rem;
+      margin-bottom: 2rem;
+    }
+    .filtros button {
+      padding: .5rem 1rem;
+      border-radius: 25px;
+      border: 1px solid #aaa;
+      background: #fff;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all .3s;
+    }
+    .filtros button.active {
+      background: #333;
+      color: #fff;
+      border-color: #333;
+    }
+    .filtros button:hover {
+      background: #8b6a42;
+      color: #fff;
+      border-color: #8b6a42;
+    }
+
+     .productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }  /* ← Aquí cierra .productos */
+
+  /* — ELIMINA o comenta lo que tenías de .producto / .producto img entre estas líneas — */
+
+  /* — PEGA este bloque justo aquí — */
+ 
+
+  .producto img {
+    width: 105%;
+    height: 300px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 30px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .producto img:hover {
+    transform: scale(1.20);
+  }
+  /* — Fin del bloque nuevo — */
+
+  @media (max-width: 600px) {
+    /* … aquí siguen tus media queries … */
+  }
+
+
+
+  @media (max-width: 600px) {
+    /* … aquí siguen tus media queries … */
+  }
+
+    @media (max-width:600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        margin-top: 1rem;
+      }
+      .productos {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">CM,BERGINI,MONTANARA</div>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="ubicacion.html">Ubicación</a>
+    </nav>
+  </header>
+
+  <div class="catalogo-container">
+    <h1>Catálogo de Productos</h1>
+
+    <div class="buscador">
+      <i class="fas fa-search"></i>
+      <input type="text" id="buscador" placeholder="Buscar productos...">
+    </div>
+
+    <div class="filtros" id="filtros">
+       <script>
+    const categorias = ["Todos","Shampoo","Acondicionador","Gotero","Gotas de Brillo","Tratamientos","Ampollas","Aceites","Leave-In","Tintes"];
+    const contFiltros = document.getElementById("filtros");
+    categorias.forEach(cat=>{
+      const btn = document.createElement("button");
+      btn.innerText = cat;
+      btn.onclick = ()=> {
+        document.querySelectorAll(".filtros button").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".producto").forEach(p=>{
+          p.style.display = (cat==="Todos"|| p.dataset.categoria===cat) ? "block" : "none";
+        });
+      };
+      contFiltros.appendChild(btn);<div class="filtros" id="filtros"><!-- empties out for JS --></div>
+…
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const categorias = [
+    "Todos","Shampoo","Acondicionador","Gotero",
+    "Gotas de Brillo","Tratamientos","Ampollas",
+    "Aceites","Leave-In","Tintes"
+  ];
+  const contFiltros = document.getElementById("filtros");
+
+  categorias.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.innerText = cat;
+    btn.addEventListener("click", () => {
+      // toggle active class
+      contFiltros.querySelectorAll("button")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      // show/hide products
+      document.querySelectorAll(".producto")
+        .forEach(p => {
+          p.style.display =
+            cat === "Todos" || p.dataset.categoria === cat
+              ? "block"
+              : "none";
+        });
+    });
+    contFiltros.appendChild(btn);  // ← must be here
+  });
+
+  // click the first one to initialize
+  contFiltros.querySelector("button").click();
+});
+</script>
+
+    });
+    // activar “Todos” al cargar
+    contFiltros.firstElementChild.classList.add("active");
+  </script>
+      <!-- filtros dinámicos -->
+<div class="filtros" id="filtros"></div>
+
+<!-- Eliminado el bloque duplicado de categorías y filtrado para evitar el error de redeclaración -->
+
+      <!-- Botones generados por JavaScript -->
+    </div>
+
+    <div class="productos" id="lista-productos">
+      <!-- Shampoos 1–14 -->
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo1.png" alt="Shampoo 1">
+        <p>Shampoo 1</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo2.png" alt="Shampoo 2">
+        <p>Shampoo 2</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo3.png" alt="Shampoo 3">
+        <p>Shampoo 3</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo4.png" alt="Shampoo 4">
+        <p>Shampoo 4</p>  
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo5.png" alt="Shampoo 5">
+        <p>Shampoo 5</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo6.png" alt="Shampoo 6">
+        <p>Shampoo 6</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo7.png" alt="Shampoo 7">
+        <p>Shampoo 7</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo8.png" alt="Shampoo 8">
+        <p>Shampoo 8</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo9.png" alt="Shampoo 9">
+        <p>Shampoo 9</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo10.png" alt="Shampoo 10">
+        <p>Shampoo 10</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo11.png" alt="Shampoo 11">
+        <p>Shampoo 11</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo12.png" alt="Shampoo 12">
+        <p>Shampoo 12</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo13.png" alt="Shampoo 13">
+        <p>Shampoo 13</p>
+      </div>
+      <div class="producto" data-categoria="Shampoo">
+        <img src="img/Shampoo14.png" alt="Shampoo 14">
+        <p>Shampoo 14</p>
+          <!-- Acondicionadores 1–10 -->
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador1.png" alt="Acondicionador 1">
+    <p>Acondicionador 1</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador2.png" alt="Acondicionador 2">
+    <p>Acondicionador 2</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador3.png" alt="Acondicionador 3">
+    <p>Acondicionador 3</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador4.png" alt="Acondicionador 4">
+    <p>Acondicionador 4</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador5.png" alt="Acondicionador 5">
+    <p>Acondicionador 5</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador6.png" alt="Acondicionador 6">
+    <p>Acondicionador 6</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador7.png" alt="Acondicionador 7">
+    <p>Acondicionador 7</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador8.png" alt="Acondicionador 8">
+    <p>Acondicionador 8</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador9.png" alt="Acondicionador 9">
+    <p>Acondicionador 9</p>
+  </div>
+  <div class="producto" data-categoria="Acondicionador">
+    <img src="img/Acondicionador10.png" alt="Acondicionador 10">
+    <p>Acondicionador 10</p>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Filtrado dinámico y buscador
+    const contenedor = document.getElementById('lista-productos');
+    const filtrosContainer = document.getElementById('filtros');
+    const buscador = document.getElementById('buscador');
+
+    // Obtiene todas las categorías existentes
+    const productos = Array.from(contenedor.children);
+    const categorias = ['Todos', ...new Set(productos.map(p => p.dataset.categoria))];
+
+    // Genera botones de filtros
+    categorias.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.textContent = cat;
+      btn.addEventListener('click', () => {
+        // Activa el botón
+        filtrosContainer.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        // Muestra/oculta según categoría
+        productos.forEach(p => {
+          p.style.display = (cat==='Todos' || p.dataset.categoria===cat) ? 'block' : 'none';
+        });
+      });
+      filtrosContainer.appendChild(btn);
+    });
+    // Activa 'Todos' por defecto
+    filtrosContainer.firstElementChild.classList.add('active');
+
+    // Buscador en vivo
+    buscador.addEventListener('input', () => {
+      const term = buscador.value.toLowerCase();
+      productos.forEach(p => {
+        const name = p.querySelector('p').textContent.toLowerCase();
+        p.style.display = name.includes(term) ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
